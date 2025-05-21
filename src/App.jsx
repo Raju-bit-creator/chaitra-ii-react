@@ -3,11 +3,37 @@ import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
+import Alert from "./components/Alert";
+import One from "./components/One";
 
 function App() {
   const [count, setCount] = useState(10); //initialize
   const [name, setName] = useState("John "); //initialize
   const [mode, setMode] = useState("dark");
+  const [text, setText] = useState("Dark mode");
+  const [alert, setAlert] = useState(null);
+
+  const toggleMode = () => {
+    if (mode === "dark") {
+      setMode("light");
+      setText("Dark mode");
+      showAlert("Light mode has been enabled", "success");
+    } else {
+      setMode("dark");
+      setText("Light mode");
+      showAlert("Dark mode has been enabled", "success");
+    }
+  };
+  const showAlert = (message, type) => {
+    setAlert({
+      message: message,
+      type: type,
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 2000);
+  };
+
   const handleIncrement = () => {
     setCount(count + 1);
     setName("Ramesh");
@@ -19,8 +45,10 @@ function App() {
 
   return (
     <>
-      <Navbar mode={mode} title={title} />
+      <Navbar mode={mode} toggleMode={toggleMode} text={text} title={title} />
+      <Alert alert={alert} />
       <Banner />
+      <One mode={mode} />
       <div className="container">
         <h1 className="title">chaitra group</h1>
         <div className="card">
