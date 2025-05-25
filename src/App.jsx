@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -42,10 +43,12 @@ function App() {
     setCount(count - 1);
   };
   let title = "onlinekhabar.com";
+  const notify = () => toast("Login successfull");
 
   return (
     <>
       <Navbar mode={mode} toggleMode={toggleMode} text={text} title={title} />
+      <ToastContainer />
       <Alert alert={alert} />
       <Banner />
       <One mode={mode} />
@@ -53,6 +56,7 @@ function App() {
         <h1 className="title">chaitra group</h1>
         <div className="card">
           <button onClick={handleIncrement}>Click me to increase</button>
+          <button onClick={notify}>Tostify</button>
           <button onClick={handleDecrement}>Click me to decrease</button>
         </div>
         <div>
