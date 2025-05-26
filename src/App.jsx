@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Banner from "./components/Banner";
+
 import Alert from "./components/Alert";
-import One from "./components/One";
+
+import Home from "./components/Home";
+import About from "./components/About";
 
 function App() {
   const [count, setCount] = useState(10); //initialize
@@ -47,23 +50,16 @@ function App() {
 
   return (
     <>
-      <Navbar mode={mode} toggleMode={toggleMode} text={text} title={title} />
-      <ToastContainer />
-      <Alert alert={alert} />
-      <Banner />
-      <One mode={mode} />
-      <div className="container">
-        <h1 className="title">chaitra group</h1>
-        <div className="card">
-          <button onClick={handleIncrement}>Click me to increase</button>
-          <button onClick={notify}>Tostify</button>
-          <button onClick={handleDecrement}>Click me to decrease</button>
-        </div>
-        <div>
-          <h4>Counter: {count}</h4>
-          <h5>My name is: {name}</h5>
-        </div>
-      </div>
+      <Router>
+        <Navbar mode={mode} toggleMode={toggleMode} text={text} title={title} />
+        <ToastContainer />
+        <Alert alert={alert} />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Router>
     </>
   );
 }

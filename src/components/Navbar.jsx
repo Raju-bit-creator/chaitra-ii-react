@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ title, mode, toggleMode, text }) => {
   // console.log(mode);
@@ -7,9 +8,9 @@ const Navbar = ({ title, mode, toggleMode, text }) => {
     <div>
       <nav class={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <Link class="navbar-brand" to="/">
             {title}
-          </a>
+          </Link>
           <button
             class="navbar-toggler"
             type="button"
@@ -24,13 +25,23 @@ const Navbar = ({ title, mode, toggleMode, text }) => {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+                <Link class="nav-link active" aria-current="page" to="/">
                   Home
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/about">
+                  About
+                </Link>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Blogs
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  Link
+                  Contact Us
                 </a>
               </li>
               <li class="nav-item dropdown">
@@ -64,16 +75,6 @@ const Navbar = ({ title, mode, toggleMode, text }) => {
                     </a>
                   </li>
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link disabled"
-                  href="#"
-                  tabindex="-1"
-                  aria-disabled="true"
-                >
-                  Disabled
-                </a>
               </li>
             </ul>
             {/* <form class="d-flex">
