@@ -3,4 +3,14 @@
 }
 .small-banner {
   width: 100%;
+  position: relative;
+}
+.page-title {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
 }

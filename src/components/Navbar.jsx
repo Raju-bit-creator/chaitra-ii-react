@@ -35,14 +35,14 @@ const Navbar = ({ title, mode, toggleMode, text }) => {
                 </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <Link class="nav-link" to="/blogs">
                   Blogs
-                </a>
+                </Link>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <Link class="nav-link" to="/contact">
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li class="nav-item dropdown">
                 <a

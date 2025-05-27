@@ -9,6 +9,8 @@ import Alert from "./components/Alert";
 
 import Home from "./components/Home";
 import About from "./components/About";
+import Contact from "./components/Contact";
+import Blogs from "./components/Blogs";
 
 function App() {
   const [count, setCount] = useState(10); //initialize
@@ -58,6 +60,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blogs" element={<Blogs />} />
         </Routes>
       </Router>
     </>
