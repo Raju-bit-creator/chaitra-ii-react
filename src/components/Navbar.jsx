@@ -6,13 +6,13 @@ const Navbar = ({ title, mode, toggleMode, text }) => {
 
   return (
     <div>
-      <nav class={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
-        <div class="container-fluid">
-          <Link class="navbar-brand" to="/">
+      <nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">
             {title}
           </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -20,33 +20,33 @@ const Navbar = ({ title, mode, toggleMode, text }) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to="/">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/">
                   Home
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/about">
+              <li className="nav-item">
+                <Link className="nav-link" to="/about">
                   About
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/blogs">
+              <li className="nav-item">
+                <Link className="nav-link" to="/blogs">
                   Blogs
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/contact">
+              <li className="nav-item">
+                <Link className="nav-link" to="/contact">
                   Contact Us
                 </Link>
               </li>
-              <li class="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle"
                   href="#"
                   id="navbarDropdown"
                   role="button"
@@ -55,36 +55,36 @@ const Navbar = ({ title, mode, toggleMode, text }) => {
                 >
                   Dropdown
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#">
                       Action
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#">
                       Another action
                     </a>
                   </li>
                   <li>
-                    <hr class="dropdown-divider" />
+                    <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#">
                       Something else here
                     </a>
                   </li>
                 </ul>
               </li>
             </ul>
-            {/* <form class="d-flex">
+            {/* <form className="d-flex">
               <input
-                class="form-control me-2"
+                className="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
               />
-              <button class="btn btn-outline-success" type="submit">
+              <button className="btn btn-outline-success" type="submit">
                 Search
               </button>
             </form> */}
