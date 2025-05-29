@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const BlogCards = () => {
   const blogs = [
@@ -36,6 +36,10 @@ const BlogCards = () => {
   React.useEffect(() => {
     fetchData();
   }, []);
+
+  // useEffect(()=>{
+  //   fetchData();
+  // },[])
   return (
     <div className="blogs-section">
       <div className="container">

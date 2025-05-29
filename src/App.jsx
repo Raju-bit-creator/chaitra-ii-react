@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Blogs from "./components/Blogs";
+import ClassBased from "./components/ClassBased";
 
 function App() {
   const [count, setCount] = useState(10); //initialize
@@ -63,6 +64,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blogs" element={<Blogs />} />
         </Routes>
+        <ClassBased />
       </Router>
     </>
   );
