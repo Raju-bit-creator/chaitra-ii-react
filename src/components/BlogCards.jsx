@@ -27,11 +27,11 @@ const BlogCards = () => {
   const [news, setNews] = React.useState([]);
   const fetchData = async () => {
     const response = await fetch(
-      "https://jsonplaceholder.typicode.com/todos/2"
+      "https://newsapi.org/v2/top-headlines?country=us&apiKey=d125d26fbc6d49728775e0b977bddc5a"
     );
     const data = await response.json();
-    console.log("this is data from api", data);
-    setNews(data);
+    console.log("this is data from api", data.articles);
+    setNews(data.articles);
   };
   React.useEffect(() => {
     fetchData();
@@ -44,7 +44,13 @@ const BlogCards = () => {
     <div className="blogs-section">
       <div className="container">
         <div className="row">
-          <h4>{news.title}</h4>
+          {news.map((i) => {
+            return (
+              <div key={i.title}>
+                <h6>{i.description}</h6>
+              </div>
+            );
+          })}
           <h4>Our latest blogs</h4>
           {blogs &&
             blogs.map((item) => {
