@@ -14,6 +14,7 @@ import Blogs from "./components/Blogs";
 import ClassBased from "./components/ClassBased";
 import UserList from "./components/UserList";
 import UserDetail from "./components/UserDetail";
+import ProductState from "./context/ProductState";
 
 function App() {
   const [count, setCount] = useState(10); //initialize
@@ -55,21 +56,28 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Navbar mode={mode} toggleMode={toggleMode} text={text} title={title} />
-        <ToastContainer />
-        <Alert alert={alert} />
+      <ProductState>
+        <Router>
+          <Navbar
+            mode={mode}
+            toggleMode={toggleMode}
+            text={text}
+            title={title}
+          />
+          <ToastContainer />
+          <Alert alert={alert} />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/userlist" element={<UserList />} />
-          <Route path="/:id/:username/:age" element={<UserDetail />} />
-        </Routes>
-        {/* <ClassBased /> */}
-      </Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/userlist" element={<UserList />} />
+            <Route path="/:id/:username/:age" element={<UserDetail />} />
+          </Routes>
+          {/* <ClassBased /> */}
+        </Router>
+      </ProductState>
     </>
   );
 }
