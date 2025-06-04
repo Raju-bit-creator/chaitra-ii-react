@@ -44,6 +44,11 @@ const Navbar = ({ title, mode, toggleMode, text }) => {
                   Contact Us
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"

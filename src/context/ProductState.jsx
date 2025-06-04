@@ -2,12 +2,38 @@ import React from "react";
 import ProductContext from "./ProductContext";
 
 const ProductState = (props) => {
-  const product = {
-    id: 1,
-    name: "Apple",
-    description: "this is local product of mustang",
-    price: 200,
-  };
+  const products = [
+    {
+      _id: 1,
+      title: "Apple",
+      description: "this is local product of mustang",
+      price: 200,
+      instock: 5,
+    },
+    {
+      _id: 2,
+      title: "Mango",
+      description: "this is local product of terai",
+      price: 300,
+      instock: 5,
+    },
+    {
+      _id: 3,
+      title: "Banana",
+      description: "this is local product of Gorkha",
+      price: 100,
+      instock: 2,
+    },
+    {
+      _id: 4,
+      title: "Banana1",
+      description: "this is local product of Gorkha",
+      price: 200,
+      instock: 4,
+    },
+  ];
+  const [product, setProduct] = React.useState(products);
+
   const [count, setCount] = React.useState(10);
 
   const [news, setNews] = React.useState([]);
