@@ -16,6 +16,7 @@ import UserList from "./components/UserList";
 import UserDetail from "./components/UserDetail";
 import ProductState from "./context/ProductState";
 import Login from "./components/Login";
+import SignUp from "./components/signup";
 
 function App() {
   const [count, setCount] = useState(10); //initialize
@@ -75,6 +76,7 @@ function App() {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/userlist" element={<UserList />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/:id/:username/:age" element={<UserDetail />} />
           </Routes>
           {/* <ClassBased /> */}

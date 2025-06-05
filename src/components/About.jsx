@@ -4,10 +4,17 @@ import ProductContext from "../context/ProductContext";
 
 const About = () => {
   const context = useContext(ProductContext);
-  const { product, count, fetchData, news } = context;
+  const {
+    product,
+    state: { cart, products },
+    dispatch,
+    count,
+    fetchData,
+    news,
+  } = context;
   console.log("product fruits", product);
-  console.log("count", count);
-  console.log("news", news);
+  console.log("products", products);
+  console.log("cart", cart);
 
   let title = "About Us";
 
@@ -30,8 +37,18 @@ const About = () => {
                       <h5 class="card-title">{item.title}</h5>
                       <p class="card-text">{item.description}</p>
                       <p class="card-text">Rs. {item.price}</p>
-                      <a href="#" class="btn btn-primary">
-                        Go somewhere
+
+                      <a
+                        href="#"
+                        class="btn btn-primary"
+                        onClick={() =>
+                          dispatch({
+                            type: "ADD_TO_CART",
+                            payload: item,
+                          })
+                        }
+                      >
+                        Add to cart
                       </a>
                     </div>
                   </div>

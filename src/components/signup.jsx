@@ -1,26 +1,27 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
   const navigate = useNavigate();
   const [credential, setCredential] = React.useState({
+    name: "",
     email: "",
     password: "",
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = credential; //destructuring
-    const response = await fetch("http://localhost:5000/api/auth/login", {
+    const { name, email, password } = credential; //destructuring
+    const response = await fetch("http://localhost:5000/api/auth/createuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name, email, password }),
     });
     const data = await response.json();
     if (data.success) {
       localStorage.setItem("token", "xyz");
-      navigate("/");
+      navigate("/login");
     } else {
       alert("Invalid Credentials");
     }
@@ -40,6 +41,18 @@ const Login = () => {
         </div>
         <div className="col-md-6">
           <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label for="exampleInputEmail1" className="form-label">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={credential.name}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
             <div className="mb-3">
               <label for="exampleInputEmail1" className="form-label">
                 Email address
@@ -67,19 +80,6 @@ const Login = () => {
                 id="exampleInputPassword1"
               />
             </div>
-            <div className="mb-3">
-              <label for="exampleInputPassword1" className="form-label">
-                Conform Password
-              </label>
-              <input
-                name="cpassword"
-                value={credential.password}
-                onChange={handleChange}
-                type="password"
-                className="form-control"
-                id="exampleInputPassword1"
-              />
-            </div>
 
             <button type="submit" className="btn btn-primary">
               Submit
@@ -94,4 +94,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
