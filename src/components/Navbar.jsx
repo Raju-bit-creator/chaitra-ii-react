@@ -100,16 +100,18 @@ const Navbar = ({ title, mode, toggleMode, text }) => {
                 Search
               </button>
             </form> */}
-            <button
-              type="button"
-              class="btn btn-primary mx-3 position-relative"
-            >
-              <FaShoppingCart />
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {cart.length}
-                <span class="visually-hidden">unread messages</span>
-              </span>
-            </button>
+            <Link to="/cartitems">
+              <button
+                type="button"
+                class="btn btn-primary mx-3 position-relative"
+              >
+                <FaShoppingCart />
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {cart.length}
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+            </Link>
 
             <button onClick={toggleMode} className="btn btn-primary">
               {text}
