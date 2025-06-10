@@ -38,3 +38,9 @@
   display: flex;
   justify-content: space-between;
 }
+.summary {
+  background: #3b3838;
+  padding: 20px 30px;
+  color: #fff;
+  border-radius: 10px;
+}

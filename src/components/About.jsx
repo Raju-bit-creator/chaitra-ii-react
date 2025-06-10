@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SmallBanner from "./SmallBanner";
 import ProductContext from "../context/ProductContext";
 import { BsThreeDots } from "react-icons/bs";
+import EditProductModal from "./EditProductModal";
 
 const About = () => {
   const context = useContext(ProductContext);
@@ -13,11 +14,40 @@ const About = () => {
     fetchData,
     news,
   } = context;
-  console.log("product fruits", product);
-  console.log("products", products);
-  console.log("cart", cart);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   let title = "About Us";
+
+  const toggleMenu = (id) => {
+    console.log("toggle item id ", id);
+    setMenuVisible((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
+
+  const closeEditModal = () => {
+    setModalVisible(false);
+    setSelectedProduct(null);
+  };
+
+  const saveEdit = (updateData) => {
+    console.log("save edit product ", updateData);
+    editProduct(selectedProduct._id, updateData);
+  };
+
+  const handleDelete = (id) => {
+    console.log("delete item id ", id);
+  };
+
+  const openEditModal = (product) => {
+    setSelectedProduct(product);
+    console.log("editing product", product);
+
+    setModalVisible(true);
+  };
 
   useEffect(() => {
     fetchData();
@@ -27,15 +57,6 @@ const About = () => {
     <div>
       <SmallBanner title={title} />
       <div className="about">
-        {/* <button
-          onClick={() =>
-            dispatch({
-              name: "hello world",
-            })
-          }
-        >
-          click me
-        </button> */}
         <div className="container">
           <div className="row">
             {product.map((item) => {
@@ -50,7 +71,17 @@ const About = () => {
                     <div className="card-body">
                       <div className="title-content">
                         <h5 className="card-title">{item.title}</h5>
-                        <BsThreeDots />
+                        <BsThreeDots onClick={() => toggleMenu(item._id)} />
+                        {menuVisible[item._id] && (
+                          <div className="menu-options">
+                            <button onClick={() => openEditModal(item)}>
+                              Edit
+                            </button>
+                            <button onClick={() => handleDelete(item._id)}>
+                              Delete
+                            </button>
+                          </div>
+                        )}
                       </div>
                       <p className="card-text">{item.description}</p>
                       <p className="card-text">Rs. {item.price}</p>
@@ -58,7 +89,7 @@ const About = () => {
                       {/* ternary operator  */}
 
                       {cart && cart.some((p) => p._id === item._id) ? (
-                        <a
+                        <button
                           href="#"
                           className="btn btn-danger"
                           onClick={() =>
@@ -69,9 +100,9 @@ const About = () => {
                           }
                         >
                           Remove from cart
-                        </a>
+                        </button>
                       ) : (
-                        <a
+                        <button
                           href="#"
                           className="btn btn-primary"
                           onClick={() =>
@@ -82,10 +113,19 @@ const About = () => {
                           }
                         >
                           Add to cart
-                        </a>
+                        </button>
                       )}
                     </div>
                   </div>
+                  {modalVisible &&
+                    selectedProduct &&
+                    selectedProduct._id === item._id && (
+                      <EditProductModal
+                        product={selectedProduct}
+                        onClose={closeEditModal}
+                        onSave={saveEdit}
+                      />
+                    )}
                 </div>
               );
             })}

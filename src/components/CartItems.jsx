@@ -68,7 +68,7 @@ const CartItems = () => {
         </ul>
       </div>
       <div className="summary">
-        <div className="title"> Total items: {cart.length}</div>
+        <div> Total items: {cart.length}</div>
         <h4>Sub-total: {total}</h4>
         <button className="btn btn-primary">Proceed to checkout</button>
       </div>
