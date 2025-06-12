@@ -40,21 +40,28 @@ const ProductState = (props) => {
     cart: [],
   });
 
-  const [count, setCount] = React.useState(10);
-
-  const [news, setNews] = React.useState([]);
-  const fetchData = async () => {
-    const response = await fetch(
-      "https://newsapi.org/v2/top-headlines?country=us&apiKey=d125d26fbc6d49728775e0b977bddc5a"
-    );
-    const data = await response.json();
-    console.log("this is data from api", data.articles);
-    setNews(data.articles);
+  const allProduct = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/product/getproduct",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6I",
+          },
+        }
+      );
+      const data = await response.json();
+      setProduct(data);
+      console.log("data from backend response", data);
+    } catch (error) {
+      console.log("error", error);
+    }
   };
+
   return (
-    <ProductContext.Provider
-      value={{ product, count, state, dispatch, setCount, news, fetchData }}
-    >
+    <ProductContext.Provider value={{ product, state, dispatch, allProduct }}>
       {props.children}
     </ProductContext.Provider>
   );

@@ -18,6 +18,7 @@ import ProductState from "./context/ProductState";
 import Login from "./components/Login";
 import SignUp from "./components/signup";
 import CartItems from "./components/CartItems";
+import AddProduct from "./components/AddProduct";
 
 function App() {
   const [count, setCount] = useState(10); //initialize
@@ -73,6 +74,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/addproduct" element={<AddProduct />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/userlist" element={<UserList />} />

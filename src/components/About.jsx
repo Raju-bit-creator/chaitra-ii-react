@@ -8,11 +8,9 @@ const About = () => {
   const context = useContext(ProductContext);
   const {
     product,
+    allProduct,
     state: { cart, products },
     dispatch,
-    count,
-    fetchData,
-    news,
   } = context;
   const [menuVisible, setMenuVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -50,7 +48,7 @@ const About = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    allProduct();
   }, []);
 
   return (
