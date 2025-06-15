@@ -11,6 +11,7 @@ const About = () => {
     allProduct,
     state: { cart, products },
     dispatch,
+    editProduct,
   } = context;
   const [menuVisible, setMenuVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);

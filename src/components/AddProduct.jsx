@@ -7,11 +7,40 @@ const AddProduct = () => {
     description: "",
     price: "",
     instock: "",
+    image: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("form submit");
+    const formData = new FormData();
+    formData.append("title", product.title);
+    formData.append("description", product.description);
+    formData.append("price", product.price);
+    formData.append("instock", product.instock);
+    if (product.image) {
+      formData.append("image", product.image);
+    }
+    try {
+      const response = axios.post(
+        "http://localhost:3001/api/products",
+        formData,
+        {
+          headers: {
+            // 'Content-Type': 'multipart/form-data',
+            "auth-token": "1234567890",
+          },
+        }
+      );
+      console.log(response.data);
+      if (response) {
+        alert("Product Added Successfully");
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (e) => {
@@ -92,6 +121,7 @@ const AddProduct = () => {
             </label>
             <input
               type="file"
+              name="image"
               multiple
               className="form-control"
               onChange={handleChange}
