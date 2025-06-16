@@ -85,9 +85,40 @@ const ProductState = (props) => {
     }
   };
 
+  //delete product
+  const deleteProduct = async (id) => {
+    try {
+      const response = await fetch(
+        `https://localhost:5000/api/product/deleteproduct/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": "eyJhbGciOiJIUzI1NiIsInR",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      console.log("data deleted", data);
+    } catch (error) {
+      console.log("error", error);
+      throw new Error("filed to delete product");
+    }
+  };
+
   return (
     <ProductContext.Provider
-      value={{ product, state, dispatch, allProduct, editProduct }}
+      value={{
+        product,
+        state,
+        dispatch,
+        allProduct,
+        editProduct,
+        deleteProduct,
+      }}
     >
       {props.children}
     </ProductContext.Provider>

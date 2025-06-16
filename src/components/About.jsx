@@ -12,6 +12,7 @@ const About = () => {
     state: { cart, products },
     dispatch,
     editProduct,
+    deleteProduct,
   } = context;
   const [menuVisible, setMenuVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -39,6 +40,7 @@ const About = () => {
 
   const handleDelete = (id) => {
     console.log("delete item id ", id);
+    deleteProduct(id);
   };
 
   const openEditModal = (product) => {

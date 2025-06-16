@@ -10,7 +10,7 @@ const AddProduct = () => {
     image: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("form submit");
     const formData = new FormData();
@@ -32,7 +32,9 @@ const AddProduct = () => {
           },
         }
       );
-      console.log(response.data);
+      const data = await response.json();
+
+      console.log("post data", data);
       if (response) {
         alert("Product Added Successfully");
       } else {
