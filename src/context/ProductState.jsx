@@ -3,6 +3,7 @@ import ProductContext from "./ProductContext";
 import { cartReducer } from "./Reducer";
 
 const ProductState = (props) => {
+  const BACKEND_URL = process.env.BACKEND_URL;
   const products = [
     {
       _id: 1,
@@ -42,16 +43,13 @@ const ProductState = (props) => {
 
   const allProduct = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/product/getproduct",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6I",
-          },
-        }
-      );
+      const response = await fetch(`${BACKEND_URL}/api/product/getproduct`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6I",
+        },
+      });
       const data = await response.json();
       setProduct(data);
       console.log("data from backend response", data);
