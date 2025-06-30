@@ -18,7 +18,10 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
-  // image:{}
+  image: {
+    type: [String],
+    required: false,
+  },
   instock: {
     type: Number,
     required: true,

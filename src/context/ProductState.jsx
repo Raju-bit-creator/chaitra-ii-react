@@ -3,7 +3,7 @@ import ProductContext from "./ProductContext";
 import { cartReducer } from "./Reducer";
 
 const ProductState = (props) => {
-  const BACKEND_URL = process.env.BACKEND_URL;
+  // const BACKEND_URL = process.env.BACKEND_URL;
   const products = [
     {
       _id: 1,

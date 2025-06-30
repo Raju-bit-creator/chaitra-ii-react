@@ -18,8 +18,8 @@ const Login = () => {
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
-    if (data.success) {
-      localStorage.setItem("token", "xyz");
+    if (data) {
+      localStorage.setItem("token", data.authToken);
       navigate("/");
     } else {
       alert("Invalid Credentials");
@@ -60,19 +60,6 @@ const Login = () => {
               </label>
               <input
                 name="password"
-                value={credential.password}
-                onChange={handleChange}
-                type="password"
-                className="form-control"
-                id="exampleInputPassword1"
-              />
-            </div>
-            <div className="mb-3">
-              <label for="exampleInputPassword1" className="form-label">
-                Conform Password
-              </label>
-              <input
-                name="cpassword"
                 value={credential.password}
                 onChange={handleChange}
                 type="password"
