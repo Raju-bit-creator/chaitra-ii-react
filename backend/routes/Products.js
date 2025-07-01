@@ -39,6 +39,7 @@ router.post(
   async (req, res) => {
     try {
       const { title, price, description, instock } = req.body;
+      console.log("this from frontend", req.body);
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });

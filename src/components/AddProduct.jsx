@@ -23,12 +23,13 @@ const AddProduct = () => {
     }
     try {
       const response = axios.post(
-        "http://localhost:3001/api/products",
+        "http://localhost:5000/api/product/addproduct",
         formData,
         {
           headers: {
             // 'Content-Type': 'multipart/form-data',
-            "auth-token": "1234567890",
+            // "Content-Type": "multipart/form-data",
+            "auth-token": localStorage.getItem("token"),
           },
         }
       );
@@ -60,7 +61,7 @@ const AddProduct = () => {
     <div className="container">
       <div>
         <h5>Add product </h5>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form">
           <div className="mb-3">
             <label for="exampleInputEmail1" className="form-label">
               Title

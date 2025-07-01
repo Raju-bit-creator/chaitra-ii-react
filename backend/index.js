@@ -1,21 +1,21 @@
-const express = require("express"); //common js model
-const cors = require("cors");
-const dotenv = require("dotenv");
-const multer = require("multer");
+const express = require("express");
+var cors = require("cors");
+const app = express();
 const dbConnect = require("./config/db");
+const dotenv = require("dotenv");
 const path = require("path");
 const fs = require("fs");
-const app = express();
+const multer = require("multer");
 app.use(cors());
-dbConnect();
+app.use(express.json());
 
 dotenv.config();
-
-app.use(express.json());
 const port = process.env.PORT;
+console.log(port);
+dbConnect();
 
 app.get("/", (req, res) => {
-  res.send("Hello chaitra group");
+  res.send("api is listening");
 });
 
 // Ensure the uploads directory exists
@@ -26,12 +26,11 @@ const ensureUploadsDirectoryExists = () => {
   }
 };
 
-// Call this to create the directory if it doesn't exist
 ensureUploadsDirectoryExists();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    ensureUploadsDirectoryExists(); // Ensure the directory exists before saving the file
+    ensureUploadsDirectoryExists();
     cb(null, path.join(__dirname, "uploads")); // Use absolute path
   },
   filename: function (req, file, cb) {
@@ -44,14 +43,16 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+// Serve static files from the 'uploads' directory
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+// Route to handle file uploads
 app.post("/upload", upload.single("file"), (req, res) => {
-  res.sendStatus({ filePath: `/uploads/${req.file.filename}` });
+  res.send({ filePath: `/uploads/${req.file.filename}` });
 });
 
 app.use("/api/auth", require("./routes/Auth"));
-app.use("/api/product", upload.array("myfile"), require("./routes/Products"));
+app.use("/api/product", upload.array("image"), require("./routes/Products"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
