@@ -43,13 +43,16 @@ const ProductState = (props) => {
 
   const allProduct = async () => {
     try {
-      const response = await fetch(`${BACKEND_URL}/api/product/getproduct`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6I",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/product/allhomeproduct`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
       const data = await response.json();
       setProduct(data);
       console.log("data from backend response", data);
@@ -68,14 +71,14 @@ const ProductState = (props) => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            "auth-token": "eyJhbGciOiJIUzI1NiIsInR",
+            "auth-token": localStorage.getItem("token"),
           },
           body: JSON.stringify({ title, description, instock, price }),
         }
       );
 
       const data = await response.json();
-      console.log("data from backend response", data);
+      console.log("edited data", data);
       allProduct();
     } catch (error) {
       console.log("internal server error", error);
@@ -87,12 +90,12 @@ const ProductState = (props) => {
   const deleteProduct = async (id) => {
     try {
       const response = await fetch(
-        `https://localhost:5000/api/product/deleteproduct/${id}`,
+        `http://localhost:5000/api/product/deleteproduct/${id}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            "auth-token": "eyJhbGciOiJIUzI1NiIsInR",
+            "auth-token": localStorage.getItem("token"),
           },
         }
       );
@@ -101,6 +104,7 @@ const ProductState = (props) => {
       }
       const data = await response.json();
       console.log("data deleted", data);
+      allProduct();
     } catch (error) {
       console.log("error", error);
       throw new Error("filed to delete product");

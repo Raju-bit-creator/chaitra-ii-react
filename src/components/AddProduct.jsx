@@ -27,8 +27,6 @@ const AddProduct = () => {
         formData,
         {
           headers: {
-            // 'Content-Type': 'multipart/form-data',
-            // "Content-Type": "multipart/form-data",
             "auth-token": localStorage.getItem("token"),
           },
         }

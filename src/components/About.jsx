@@ -38,9 +38,9 @@ const About = () => {
     editProduct(selectedProduct._id, updateData);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     console.log("delete item id ", id);
-    deleteProduct(id);
+    await deleteProduct(id);
   };
 
   const openEditModal = (product) => {
@@ -65,7 +65,11 @@ const About = () => {
                 <div key={item._id} className="col-md-3">
                   <div className="card">
                     <img
-                      src="/oranges.jpg"
+                      src={
+                        item.image?.[0]
+                          ? `http://localhost:5000/uploads/${item.image[0]}`
+                          : "/oranges.jpg"
+                      }
                       className="card-img-top"
                       alt="orange image"
                     />
