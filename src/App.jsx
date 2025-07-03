@@ -19,6 +19,7 @@ import Login from "./components/Login";
 import SignUp from "./components/signup";
 import CartItems from "./components/CartItems";
 import AddProduct from "./components/AddProduct";
+import SearchResult from "./components/SearchResult";
 
 function App() {
   const [count, setCount] = useState(10); //initialize
@@ -82,6 +83,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/:id/:username/:age" element={<UserDetail />} />
             <Route path="/cartitems" element={<CartItems />} />
+            <Route path="/search/:searchQuery" element={<SearchResult />} />
           </Routes>
           {/* <ClassBased /> */}
         </Router>

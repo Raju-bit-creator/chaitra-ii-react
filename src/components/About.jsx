@@ -3,9 +3,13 @@ import SmallBanner from "./SmallBanner";
 import ProductContext from "../context/ProductContext";
 import { BsThreeDots } from "react-icons/bs";
 import EditProductModal from "./EditProductModal";
+import { useParams } from "react-router-dom";
 
 const About = () => {
   const context = useContext(ProductContext);
+  const params = useParams();
+  const { searchQuery } = params;
+
   const {
     product,
     allProduct,
@@ -51,8 +55,8 @@ const About = () => {
   };
 
   useEffect(() => {
-    allProduct();
-  }, []);
+    allProduct(searchQuery);
+  }, [searchQuery]);
 
   return (
     <div>
