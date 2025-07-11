@@ -6,7 +6,13 @@ const dotenv = require("dotenv");
 const path = require("path");
 const fs = require("fs");
 const multer = require("multer");
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "http://localhost:5173", // <-- your frontend URL
+    credentials: true, // <-- allow credentials (cookies, headers, etc.)
+  })
+);
 app.use(express.json());
 
 dotenv.config();

@@ -87,7 +87,7 @@ const SignUp = () => {
               Submit
             </button>
             <p>
-              Don't have an accout ? <Link to="/signup"> Register</Link>
+              Don't have an accout ? <Link to="/login"> Login</Link>
             </p>
           </form>
         </div>

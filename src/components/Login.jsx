@@ -18,14 +18,12 @@ const Login = () => {
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
-    if (data) {
+    if (data.success) {
       localStorage.setItem("token", data.authToken);
       navigate("/");
     } else {
-      alert("Invalid Credentials");
+      alert(data.message || "Invalid Credentials");
     }
-
-    console.log("login form is submitted");
   };
 
   const handleChange = (e) => {
@@ -71,10 +69,13 @@ const Login = () => {
             <button type="submit" className="btn btn-primary">
               Submit
             </button>
+
             <p>
               Don't have an accout ? <Link to="/signup"> Register</Link>
             </p>
           </form>
+
+          <Link to="/forgot-password">Forgot Password</Link>
         </div>
       </div>
     </div>
